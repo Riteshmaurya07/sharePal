@@ -97,23 +97,25 @@ function App() {
       {/* Date Picker Modal */}
       <DatePickerModal />
 
-      <main className="min-h-screen pt-[112px] md:pt-[100px] bg-neutral-50/30">
+      <main className="min-h-screen pt-[136px] bg-[#F7F8F9]">
         <CategoryTabs />
 
-        <div className="mx-auto w-full max-w-[1536px] px-0 sm:px-4 md:px-6 py-6 flex flex-col md:flex-row gap-6 lg:gap-8 items-start">
+        <div className="mx-auto w-full max-w-[1307px] px-0 sm:px-4 lg:px-0 py-6 flex flex-col md:flex-row gap-[34px] items-start">
           <Sidebar />
 
-          <div className="flex-1 w-full min-w-0 flex flex-col gap-8">
+          <div className="flex-1 w-full md:w-[1143px] min-w-0 flex flex-col">
             <HeroBanner />
 
-            <div>
-              <div className="flex items-end justify-between px-4 sm:px-0 mb-2 border-b border-neutral-100 pb-3">
-                <h2 className="text-xl md:text-[22px] font-bold text-neutral-900">Gaming Gadgets On Rent</h2>
-                <span className="text-sm font-semibold text-neutral-500">Total items: {productsData.products.length} items</span>
+            <div className="mt-5">
+              <div className="flex items-end justify-between px-4 sm:px-0 mb-[14px] border-b border-neutral-200 pb-3">
+                <h2 className="text-[22px] font-bold text-neutral-900">Gaming Gadgets On Rent</h2>
+                <span className="text-sm font-semibold text-neutral-500">Total items: 23 items</span>
               </div>
               
               <div className="px-3 sm:px-0 pb-12">
-                <FilterSortBar />
+                <div className="md:hidden">
+                  <FilterSortBar />
+                </div>
                 <ProductGrid products={products} />
               </div>
             </div>

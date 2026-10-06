@@ -1,51 +1,41 @@
-import { ShieldCheck, Truck, RefreshCcw } from 'lucide-react'
-
 export function ImpactStats() {
-  const values = [
-    {
-      icon: ShieldCheck,
-      title: 'Zero Deposit',
-      desc: 'Pay only for what you rent, with no hidden fees or large upfront deposits.',
-      color: 'text-[#1945E8]',
-      bg: 'bg-blue-50'
-    },
-    {
-      icon: Truck,
-      title: 'Free Delivery',
-      desc: 'Enjoy free doorstep delivery and pickup across the city on your selected dates.',
-      color: 'text-violet-600',
-      bg: 'bg-violet-50'
-    },
-    {
-      icon: RefreshCcw,
-      title: 'Premium Quality',
-      desc: 'All gear is rigorously tested, sanitized, and updated before every rental.',
-      color: 'text-[#7ACC00]',
-      bg: 'bg-green-50'
-    }
-  ]
-
   return (
-    <section className="bg-white py-12 sm:py-16">
+    <section className="bg-white py-12 md:py-16 border-t border-neutral-100">
       <div className="container mx-auto max-w-7xl px-4 text-center">
-        <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">Why Rent from Us?</h2>
-        <p className="mt-2 text-sm text-neutral-600 md:text-base">
-          Experience gaming the smart, affordable, and hassle-free way.
+        <h2 className="mb-2 text-2xl font-bold text-neutral-900 md:text-[32px]">
+          Join the movement
+        </h2>
+        <p className="mb-10 text-sm text-neutral-500 md:text-base">
+          Together, we're making a huge impact on the environment and your wallet.
         </p>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {values.map((val, idx) => {
-            const Icon = val.icon
-            return (
-              <div key={idx} className="flex flex-col items-center justify-center p-6 text-center">
-                <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ${val.bg} ${val.color}`}>
-                  <Icon className="h-8 w-8" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900">{val.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-500">{val.desc}</p>
-              </div>
-            )
-          })}
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-neutral-100">
+          <div className="flex flex-col items-center pt-6 sm:pt-0">
+            <h3 className="mb-2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 lg:text-5xl">
+              250Cr+
+            </h3>
+            <p className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+              Saved Together
+            </p>
+          </div>
+          
+          <div className="flex flex-col items-center pt-6 sm:pt-0">
+            <h3 className="mb-2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600 lg:text-5xl">
+              4.5M Kg
+            </h3>
+            <p className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+              CO₂e Emissions Saved
+            </p>
+          </div>
+          
+          <div className="flex flex-col items-center pt-6 sm:pt-0">
+            <h3 className="mb-2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 lg:text-5xl">
+              100K+
+            </h3>
+            <p className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+              Products in Circulation
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -22,7 +22,7 @@ export function ProductGrid({ products }) {
 
   return (
     <section aria-label="Gaming gadgets available for rent">
-      <div className="grid grid-cols-2 gap-3 py-4 sm:gap-4 sm:py-6 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4 md:gap-6 xl:gap-[36px]">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

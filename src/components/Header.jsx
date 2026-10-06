@@ -1,196 +1,121 @@
-import { MapPin, ChevronDown, Search, ShoppingCart, Calendar, User } from 'lucide-react'
+import { Search, ShoppingCart, User, Calendar, MapPin } from 'lucide-react'
 import { SharePalLogo } from './SharePalLogo'
 import { useAppContext } from '../context/AppContext'
 
-function formatDateShort(dateString) {
+function formatDateLabel(dateString) {
   if (!dateString) return ''
-  const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+  const d = new Date(dateString)
+  const day = d.getDate()
+  const suffix = ['th', 'st', 'nd', 'rd'][
+    day % 10 > 3 || Math.floor(day % 100 / 10) === 1 ? 0 : day % 10
+  ]
+  const month = d.toLocaleString('en-US', { month: 'short' })
+  return `${day}${suffix} ${month}`
 }
 
-/**
- * Header — sticky top navigation matching SharePal's purple header exactly.
- *
- * Desktop layout (≥lg):
- *   [Logo pill] ←gap-28→ [City | Delivery | Pickup | Select] ←flex-1→ [Search] [Cart] [Profile]
- *
- * Mobile layout (<lg):
- *   Row 1: [Logo pill]  [City badge] [Profile icon]
- *   Row 2: [📅 Select Rental Dates ................... Select▶]
- *
- * The header is `h-max` (auto height) and uses `flex-col`. Main content
- * needs top padding of ~96px mobile / ~84px desktop to clear it.
- */
 export function Header() {
   const { rentalDates, setIsDatePickerOpen } = useAppContext()
-  const displayStart = formatDateShort(rentalDates.start) || 'Delivery Date'
-  const displayEnd = formatDateShort(rentalDates.end) || 'Pickup Date'
 
   return (
-    <header
-      id="site-header"
-      className="fixed left-0 right-0 top-0 z-50 flex h-max w-full flex-col items-center justify-center gap-1 overflow-hidden pb-3 pt-[env(safe-area-inset-top)] transition-all duration-500 md:pb-4 lg:flex-row"
-      style={{ backgroundColor: '#4C187C' }}
-      role="banner"
-    >
-      {/* ── DESKTOP ROW (≥lg) ─────────────────────────────────────── */}
-      <div className="container mx-auto hidden w-full max-w-7xl items-end justify-between gap-1 px-4 transition-all lg:flex">
-
-        {/* Left group: logo */}
-        <div className="flex items-end justify-start gap-16">
-          <a className="h-full" href="/" aria-label="SharePal Home">
+    <header className="fixed top-0 z-50 w-full bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] border-b border-neutral-100 h-[88px] flex flex-col justify-center">
+      {/* ── DESKTOP HEADER ──────────────────────────────────────────────────────── */}
+      <div className="mx-auto hidden w-full max-w-[1307px] items-center justify-between px-0 lg:flex h-full">
+        {/* Left group: logo + location */}
+        <div className="flex items-center gap-12 h-full">
+          <a className="h-full flex items-start" href="/" aria-label="SharePal Home">
             <div
-              className="flex h-[76px] w-48 flex-col items-center justify-end gap-1 rounded-b-2xl pb-4 shadow-sm"
-              style={{ backgroundColor: '#4C187C' }}
+              className="flex h-[72px] w-[172px] items-center justify-center rounded-b-[18px] shadow-sm"
+              style={{ backgroundColor: '#1A4DE0' }}
             >
-              <div className="flex items-center justify-center">
+              <div className="mt-[-4px]">
                 <SharePalLogo />
               </div>
             </div>
           </a>
-        </div>
 
-        {/* Middle: date picker pill */}
-        <div className="relative flex items-center justify-center gap-2 rounded-full border-2 bg-white border-[#8A2BE2]">
-          {/* City */}
+          {/* Location selector */}
           <button
-            type="button"
-            id="city-selector-desktop"
-            className="city flex items-center justify-center gap-1 rounded-l-full bg-neutral-200 p-1.5 px-[10px] py-[6px] text-sm font-semibold text-[#1945E8] hover:bg-neutral-300 transition-colors"
+            className="flex items-center gap-1.5 text-[15px] font-semibold text-neutral-800 hover:text-neutral-600"
             aria-label="Select city"
           >
-            <MapPin className="w-5 h-5" />
-            <span>Bangalore</span>
-            <ChevronDown className="h-4 w-4 font-bold" />
-          </button>
-
-          {/* Delivery date */}
-          <div
-            id="delivery-date-desktop"
-            className="flex cursor-pointer items-center justify-center gap-2 bg-white text-neutral-700 hover:text-neutral-900 transition-colors"
-            onClick={() => setIsDatePickerOpen(true)}
-            aria-label="Edit Dates"
-            role="button"
-            tabIndex={0}
-          >
-            <div className="delivery-date flex items-center justify-center gap-2 text-sm font-semibold">
-              <Calendar className="h-4 w-4" aria-hidden="true" />
-              {displayStart}
-            </div>
-            <span className="h-5 w-px bg-neutral-200 mx-1" />
-            <div className="pickup-date flex items-center justify-center gap-2 text-sm font-semibold">
-              <Calendar className="h-4 w-4" aria-hidden="true" />
-              {displayEnd}
-            </div>
-          </div>
-
-          {/* Select CTA */}
-          <button
-            id="select-dates-desktop"
-            onClick={() => setIsDatePickerOpen(true)}
-            className="inline-flex h-[38px] items-center justify-center gap-1.5 rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white hover:bg-neutral-800 active:opacity-75 transition-opacity"
-          >
-            <span className="font-semibold leading-5 tracking-wide">Edit</span>
+            <MapPin className="h-4 w-4 text-neutral-400" />
+            Bangalore
           </button>
         </div>
 
-        {/* Right: search, cart, profile */}
-        <div className="right flex items-end justify-end gap-3 text-white transition-colors duration-300">
-          <button
-            id="search-desktop"
-            className="relative flex h-11 w-11 items-center justify-center rounded-full p-2 text-white hover:bg-white/10 transition-colors"
-            aria-label="Search"
-          >
-            <Search className="h-7 w-7" />
-          </button>
-
-          <button
-            id="cart-desktop"
-            className="relative flex h-11 w-11 items-center justify-center rounded-full p-2 text-white hover:bg-white/10 transition-colors"
-            aria-label="Cart"
-          >
-            <ShoppingCart className="h-7 w-7" />
-          </button>
-
-          <div className="profile flex cursor-pointer items-center justify-end gap-3">
+        {/* Center/Right controls */}
+        <div className="flex items-center gap-8">
+          {/* Date Selector */}
+          <div className="flex items-center rounded-full border border-neutral-200 bg-white p-1 pl-4 shadow-sm h-[44px]">
+            <div className="flex items-center gap-4 text-[13px] font-medium text-neutral-600">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-neutral-400" />
+                <span className="min-w-[140px]">
+                  {rentalDates.start ? `Delivery Date: ${formatDateLabel(rentalDates.start)}` : 'Select Delivery'}
+                </span>
+              </div>
+              <div className="h-4 w-[1px] bg-neutral-200"></div>
+              <div className="flex items-center gap-2">
+                <span className="min-w-[140px]">
+                  {rentalDates.end ? `Pickup Date: ${formatDateLabel(rentalDates.end)}` : 'Select Pickup'}
+                </span>
+              </div>
+            </div>
             <button
-              id="profile-desktop"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border-2 border-[#8A2BE2] bg-white p-0.5 text-neutral-900 hover:bg-gray-200 transition-colors"
-              aria-label="Profile"
+              id="select-dates-desktop"
+              onClick={() => setIsDatePickerOpen(true)}
+              className="ml-4 h-[36px] px-5 rounded-full bg-[#111827] text-sm font-semibold text-white hover:bg-neutral-800 transition-colors"
             >
-              <User className="h-6 w-6" />
+              Edit
             </button>
-            <span className="text-sm font-medium text-white">Hi, Login</span>
+          </div>
+
+          {/* Icons: Search, Cart, Account */}
+          <div className="flex items-center gap-6 text-neutral-600">
+            <button aria-label="Search" className="hover:text-neutral-900 transition-colors">
+              <Search className="h-5 w-5" strokeWidth={2} />
+            </button>
+            <button aria-label="Cart" className="relative hover:text-neutral-900 transition-colors">
+              <ShoppingCart className="h-5 w-5" strokeWidth={2} />
+              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
+                0
+              </span>
+            </button>
+            <button aria-label="Account" className="hover:text-neutral-900 transition-colors">
+              <User className="h-5 w-5" strokeWidth={2} />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* ── MOBILE ROW (<lg) ──────────────────────────────────────── */}
-      <div className="mobile container mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-3 px-4 lg:hidden">
-
-        {/* Row 1: Logo + City + Profile */}
-        <div className="flex h-full w-full items-center justify-between gap-1">
+      {/* ── MOBILE HEADER ───────────────────────────────────────────────────────── */}
+      <div className="flex h-full w-full flex-col justify-between px-4 py-2 lg:hidden">
+        {/* Top row: Logo + City + Icons */}
+        <div className="flex w-full items-center justify-between h-full">
           {/* Logo pill */}
           <a
-            className="logo flex h-12 w-28 flex-col items-center justify-end pb-2 rounded-b-xl shadow-sm"
+            className="flex h-[56px] w-[130px] items-center justify-center rounded-b-xl shadow-sm self-start"
             href="/"
-            style={{ backgroundColor: '#4C187C' }}
+            style={{ backgroundColor: '#1A4DE0' }}
             aria-label="SharePal Home"
           >
-            <div className="flex w-full max-w-28 items-center justify-center">
+            <div className="scale-75 mt-[-4px]">
               <SharePalLogo />
             </div>
           </a>
 
-          {/* Right: city + profile */}
-          <div className="flex w-full items-center justify-end gap-1.5 pt-1.5 md:gap-4 text-gray-900">
-            {/* City selector */}
-            <button
-              type="button"
-              id="city-selector-mobile"
-              className="city flex items-center justify-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium text-white shadow-md bg-[#8A2BE2] border-[#8A2BE2]"
-              aria-label="Select city"
-            >
-              <MapPin className="w-4 h-4 fill-white text-white" />
-              <span>Bangalore</span>
-              <ChevronDown className="w-3 h-3 font-bold" />
+          <div className="flex items-center gap-3">
+            <button className="flex items-center gap-1 text-sm font-semibold text-neutral-800">
+              Bangalore
             </button>
-
-            {/* Profile icon */}
-            <div className="profile flex items-center justify-center gap-1 p-0">
-              <button
-                id="profile-mobile"
-                className="flex h-8 min-h-8 w-8 min-w-8 cursor-pointer items-center justify-center rounded-full border-2 border-neutral-200 bg-neutral-900 p-0.5 text-white hover:bg-neutral-950 transition-colors"
-                aria-label="Profile"
-              >
-                <User className="h-5 w-5" />
-              </button>
-            </div>
+            <div className="h-4 w-[1px] bg-neutral-200"></div>
+            <button aria-label="Search" className="text-neutral-600">
+              <Search className="h-5 w-5" />
+            </button>
+            <button aria-label="Cart" className="relative text-neutral-600">
+              <ShoppingCart className="h-5 w-5" />
+            </button>
           </div>
-        </div>
-
-        {/* Row 2: Date selector bar */}
-        <div 
-          className="flex h-[34px] w-full cursor-pointer items-center justify-between gap-1 rounded-full border-2 bg-white border-[#8A2BE2]"
-          onClick={() => setIsDatePickerOpen(true)}
-          role="button"
-          tabIndex={0}
-        >
-          <div className="flex w-max items-center justify-center gap-2 rounded-full px-2 text-sm">
-            <div className="delivery-date flex items-center justify-center gap-1 px-0 text-xs font-semibold">
-              <Calendar className="mx-1 w-4 h-4" aria-hidden="true" />
-              <span className="text-xs text-neutral-700">
-                {rentalDates.start ? `${displayStart} - ${displayEnd}` : 'Select Rental Dates'}
-              </span>
-            </div>
-          </div>
-          <button
-            id="select-dates-mobile"
-            className="inline-flex h-full items-center justify-center gap-1 rounded-full bg-neutral-900 px-4 py-[6px] text-xs font-semibold text-white hover:bg-neutral-800 active:opacity-75 transition-opacity"
-            aria-label="Edit rental dates"
-          >
-            Edit
-          </button>
         </div>
       </div>
     </header>
