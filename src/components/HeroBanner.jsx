@@ -4,41 +4,49 @@ export function HeroBanner() {
   return (
     <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 py-6 md:py-8">
       <div 
-        className="relative overflow-hidden rounded-2xl p-6 md:p-10 flex flex-col items-center justify-center text-center shadow-lg"
-        style={{ background: 'linear-gradient(135deg, #4C187C 0%, #8A2BE2 50%, #4C187C 100%)' }}
+        className="relative overflow-hidden rounded-2xl flex flex-col md:flex-row items-center justify-center text-center shadow-lg"
+        style={{ background: 'linear-gradient(108.8deg, #370068 -3.14%, #6E00D0 100%)', minHeight: '260px' }}
       >
-        {/* Abstract Gaming Artwork / Shapes for Left and Right */}
-        <div className="absolute top-0 left-0 w-32 h-full opacity-20 pointer-events-none hidden md:block">
-          <div className="absolute top-1/4 left-4 w-16 h-16 rounded-full border-4 border-white/40" />
-          <div className="absolute bottom-1/4 left-10 w-12 h-12 rotate-45 border-4 border-white/40" />
+        {/* Left Artwork */}
+        <div className="absolute left-0 bottom-0 top-0 w-[45%] md:w-1/3 pointer-events-none flex items-end md:items-center justify-start opacity-30 md:opacity-100">
+          <img 
+            src="https://images.sharepal.in/super-categories/gaming-left.webp" 
+            alt="" 
+            className="h-full w-full object-cover md:object-contain object-left-bottom md:object-left p-0"
+            aria-hidden="true"
+          />
         </div>
-        <div className="absolute top-0 right-0 w-32 h-full opacity-20 pointer-events-none hidden md:block">
-          <div className="absolute top-1/3 right-8 w-14 h-14 rounded-full border-4 border-white/40" />
-          <div className="absolute bottom-1/3 right-12 w-10 h-10 border-4 border-white/40" />
+
+        {/* Right Artwork */}
+        <div className="absolute right-0 bottom-0 top-0 w-[45%] md:w-1/3 pointer-events-none flex items-end md:items-center justify-end opacity-30 md:opacity-100">
+          <img 
+            src="https://images.sharepal.in/super-categories/gaming-right.webp" 
+            alt="" 
+            className="h-full w-full object-cover md:object-contain object-right-bottom md:object-right p-0"
+            aria-hidden="true"
+          />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-2xl">
-          <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight flex flex-wrap items-center justify-center gap-2">
-            Rent the latest gaming gadgets from 
-            <div className="inline-flex items-center bg-[#5B21B6] rounded px-2 py-1">
+        <div className="relative z-10 w-full max-w-2xl px-4 py-8 md:py-12 flex flex-col items-center">
+          <h1 className="text-[22px] sm:text-3xl md:text-[32px] lg:text-[40px] font-bold text-white mb-3 md:mb-5 leading-tight flex flex-wrap items-center justify-center gap-1.5 md:gap-2 text-shadow-sm">
+            <span>Rent the latest gaming gadgets from</span>
+            <div className="inline-flex items-center bg-[#5B21B6] rounded px-2 py-1 ml-1" style={{ marginTop: '-4px' }}>
               <SharePalLogo />
             </div>
           </h1>
-          <p className="text-sm md:text-lg text-white/90 font-medium">
+          <p className="text-sm md:text-lg lg:text-[20px] text-white/90 font-medium mb-6 md:mb-8 text-shadow-sm">
             PS5, Xbox, Oculus VR, Racing Wheel on rent.
           </p>
-        </div>
 
-        {/* Bottom Platform Logos (simulated with text for fidelity without external images) */}
-        <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-8 opacity-80">
-          <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">PlayStation</span>
-          <span className="text-white/50">•</span>
-          <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Xbox</span>
-          <span className="text-white/50">•</span>
-          <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Oculus</span>
-          <span className="text-white/50">•</span>
-          <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Logitech</span>
+          {/* Bottom Platform Logos */}
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 opacity-90 mt-2">
+            <span className="text-white font-bold tracking-[0.2em] uppercase text-[10px] md:text-sm">PLAYSTATION</span>
+            <span className="text-white/50 text-xs md:text-sm">•</span>
+            <span className="text-white font-bold tracking-[0.2em] uppercase text-[10px] md:text-sm">XBOX</span>
+            <span className="text-white/50 text-xs md:text-sm">•</span>
+            <span className="text-white font-bold tracking-[0.2em] uppercase text-[10px] md:text-sm">META QUEST</span>
+          </div>
         </div>
       </div>
     </div>
