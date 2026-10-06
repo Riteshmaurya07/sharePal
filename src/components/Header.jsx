@@ -17,7 +17,7 @@ export function Header() {
   const { rentalDates, setIsDatePickerOpen } = useAppContext()
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] border-b border-neutral-100 h-[88px] flex flex-col justify-center">
+    <header className="fixed top-0 z-50 w-full bg-[#400B68] shadow-[0_2px_10px_rgba(0,0,0,0.1)] h-[88px] flex flex-col justify-center">
       {/* ── DESKTOP HEADER ──────────────────────────────────────────────────────── */}
       <div className="mx-auto hidden w-full max-w-[1307px] items-center justify-between px-0 lg:flex h-full">
         {/* Left group: logo + location */}
@@ -35,10 +35,10 @@ export function Header() {
 
           {/* Location selector */}
           <button
-            className="flex items-center gap-1.5 text-[15px] font-semibold text-neutral-800 hover:text-neutral-600"
+            className="flex items-center gap-1.5 text-[15px] font-semibold text-white hover:text-white/90 transition-colors"
             aria-label="Select city"
           >
-            <MapPin className="h-4 w-4 text-neutral-400" />
+            <MapPin className="h-4 w-4 text-white/80" />
             Bangalore
           </button>
         </div>
@@ -71,17 +71,17 @@ export function Header() {
           </div>
 
           {/* Icons: Search, Cart, Account */}
-          <div className="flex items-center gap-6 text-neutral-600">
-            <button aria-label="Search" className="hover:text-neutral-900 transition-colors">
+          <div className="flex items-center gap-6 text-white">
+            <button aria-label="Search" className="hover:text-white/80 transition-colors">
               <Search className="h-5 w-5" strokeWidth={2} />
             </button>
-            <button aria-label="Cart" className="relative hover:text-neutral-900 transition-colors">
+            <button aria-label="Cart" className="relative hover:text-white/80 transition-colors">
               <ShoppingCart className="h-5 w-5" strokeWidth={2} />
               <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
                 0
               </span>
             </button>
-            <button aria-label="Account" className="hover:text-neutral-900 transition-colors">
+            <button aria-label="Account" className="hover:text-white/80 transition-colors">
               <User className="h-5 w-5" strokeWidth={2} />
             </button>
           </div>
@@ -105,14 +105,14 @@ export function Header() {
           </a>
 
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-1 text-sm font-semibold text-neutral-800">
+            <button className="flex items-center gap-1 text-sm font-semibold text-white">
               Bangalore
             </button>
-            <div className="h-4 w-[1px] bg-neutral-200"></div>
-            <button aria-label="Search" className="text-neutral-600">
+            <div className="h-4 w-[1px] bg-white/20"></div>
+            <button aria-label="Search" className="text-white hover:text-white/80">
               <Search className="h-5 w-5" />
             </button>
-            <button aria-label="Cart" className="relative text-neutral-600">
+            <button aria-label="Cart" className="relative text-white hover:text-white/80">
               <ShoppingCart className="h-5 w-5" />
             </button>
           </div>
