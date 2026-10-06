@@ -3,9 +3,18 @@ import { createContext, useContext, useState, useMemo } from 'react'
 const AppContext = createContext(null)
 
 export function AppProvider({ children }) {
-  // Date Picker State
+  // Date Picker State - Default to tomorrow and tomorrow + 2 days
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const pickup = new Date(tomorrow)
+  pickup.setDate(pickup.getDate() + 2)
+
+  const defaultStart = tomorrow.toISOString().split('T')[0]
+  const defaultEnd = pickup.toISOString().split('T')[0]
+
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
-  const [rentalDates, setRentalDates] = useState({ start: null, end: null })
+  const [rentalDates, setRentalDates] = useState({ start: defaultStart, end: defaultEnd })
 
   // Search State
   const [searchQuery, setSearchQuery] = useState('')

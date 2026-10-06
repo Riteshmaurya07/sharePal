@@ -4,8 +4,8 @@ import { Star, Flame, Sparkles, ThumbsUp, PackageX } from 'lucide-react'
 const BADGE_CONFIG = {
   Trending: {
     label: 'Trending',
-    icon: Flame,
-    className: 'bg-orange-500 text-white',
+    icon: null,
+    className: 'border border-orange-500 bg-white text-orange-500 uppercase tracking-wider',
   },
   New: {
     label: 'New',
@@ -43,7 +43,7 @@ export function ProductBadge({ tag, outOfStock }) {
     <span
       className={`inline-flex items-center gap-1 rounded-full px-2 py-[3px] text-[10px] font-bold leading-none ${cfg.className}`}
     >
-      <Icon className="h-3 w-3" aria-hidden="true" />
+      {Icon && <Icon className="h-3 w-3" aria-hidden="true" />}
       {cfg.label}
     </span>
   )

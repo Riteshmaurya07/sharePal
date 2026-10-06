@@ -2,8 +2,10 @@ import { useMemo } from 'react'
 import { Header } from './components/Header'
 import { HeroBanner } from './components/HeroBanner'
 import { CategoryTabs } from './components/CategoryTabs'
+import { Sidebar } from './components/Sidebar'
 import { ProductGrid } from './components/ProductGrid'
 import { FloatingDateCTA } from './components/FloatingDateCTA'
+import { FloatingChat } from './components/FloatingChat'
 import { DatePickerModal } from './components/DatePickerModal'
 import { FilterSortBar } from './components/FilterSortBar'
 import { FAQ } from './components/FAQ'
@@ -89,30 +91,32 @@ function App() {
       {/* Floating bottom rental-dates CTA */}
       <FloatingDateCTA />
 
+      {/* Floating chat CTA */}
+      <FloatingChat />
+
       {/* Date Picker Modal */}
       <DatePickerModal />
 
-      <main className="min-h-screen">
-        {/*
-          Outer wrapper that:
-          1. Provides top padding equal to header height (pt-24 mobile / pt-20 desktop)
-          2. The reference page uses `py-24 md:py-20` on a container inside main
-        */}
-        <div className="container mx-auto w-full max-w-7xl px-0 py-24 md:py-20">
+      <main className="min-h-screen pt-[112px] md:pt-[100px] bg-neutral-50/30">
+        <CategoryTabs />
 
-          {/* Purple gradient section — tabs + hero */}
-          <div
-            className="relative max-md:pb-3"
-            style={{ background: 'linear-gradient(360deg, #8A2BE2 0%, #4C187C 100%)' }}
-          >
-            <CategoryTabs />
+        <div className="mx-auto w-full max-w-[1536px] px-0 sm:px-4 md:px-6 py-6 flex flex-col md:flex-row gap-6 lg:gap-8 items-start">
+          <Sidebar />
+
+          <div className="flex-1 w-full min-w-0 flex flex-col gap-8">
             <HeroBanner />
-          </div>
 
-          {/* Product grid — white bg, padded */}
-          <div className="px-3 sm:px-4 lg:px-6 pb-12">
-            <FilterSortBar />
-            <ProductGrid products={products} />
+            <div>
+              <div className="flex items-end justify-between px-4 sm:px-0 mb-2 border-b border-neutral-100 pb-3">
+                <h2 className="text-xl md:text-[22px] font-bold text-neutral-900">Gaming Gadgets On Rent</h2>
+                <span className="text-sm font-semibold text-neutral-500">Total items: {productsData.products.length} items</span>
+              </div>
+              
+              <div className="px-3 sm:px-0 pb-12">
+                <FilterSortBar />
+                <ProductGrid products={products} />
+              </div>
+            </div>
           </div>
         </div>
 

@@ -105,7 +105,7 @@ export function ProductCard({ product }) {
           <img
             src={image}
             alt={name}
-            className={`h-full w-full object-contain p-1 transition-transform duration-500 group-hover:scale-[1.03]
+            className={`absolute inset-0 h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]
               ${out_of_stock ? 'grayscale' : ''}
             `}
             loading="lazy"
@@ -121,9 +121,9 @@ export function ProductCard({ product }) {
       </div>
 
       {/* ── Card body ─────────────────────────────────────────── */}
-      <div className="flex flex-1 flex-col gap-2 p-3">
+      <div className="flex flex-1 flex-col gap-3 p-4">
         {/* Product name — max 2 lines */}
-        <h2 className="line-clamp-2 text-sm font-semibold leading-snug text-neutral-900 min-h-[2.5rem]">
+        <h2 className="line-clamp-2 text-[19px] font-semibold leading-snug text-neutral-900 min-h-[3.2rem]">
           {name}
         </h2>
 

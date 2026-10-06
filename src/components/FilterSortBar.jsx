@@ -9,7 +9,7 @@ export function FilterSortBar() {
   } = useAppContext()
 
   return (
-    <div className="flex flex-col gap-3 pb-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between border-t border-b border-neutral-100 mb-6">
       {/* Search Input */}
       <div className="relative w-full max-w-sm">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -26,26 +26,26 @@ export function FilterSortBar() {
 
       {/* Filter and Sort Controls */}
       <div className="flex items-center gap-3 self-end sm:self-auto">
-        <div className="flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 py-1.5 shadow-sm">
-          <SlidersHorizontal className="h-3.5 w-3.5 text-neutral-500" />
-          <span className="text-xs font-medium text-neutral-700">Filter:</span>
+        <div className="flex items-center gap-1.5 rounded-lg bg-neutral-50 px-3 py-1.5 text-sm">
+          <SlidersHorizontal className="h-4 w-4 text-neutral-500" />
+          <span className="font-medium text-neutral-700">Filter:</span>
           <select 
             value={availabilityFilter}
             onChange={(e) => setAvailabilityFilter(e.target.value)}
-            className="bg-transparent text-xs font-semibold text-neutral-900 outline-none"
+            className="bg-transparent font-semibold text-neutral-900 outline-none cursor-pointer"
             aria-label="Filter by availability"
           >
-            <option value="all">All Items</option>
-            <option value="available">Available Now</option>
+            <option value="all">All</option>
+            <option value="available">Available</option>
           </select>
         </div>
 
-        <div className="flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 py-1.5 shadow-sm">
-          <span className="text-xs font-medium text-neutral-700">Sort:</span>
+        <div className="flex items-center gap-1.5 rounded-lg bg-neutral-50 px-3 py-1.5 text-sm">
+          <span className="font-medium text-neutral-700">Sort:</span>
           <select 
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="bg-transparent text-xs font-semibold text-neutral-900 outline-none"
+            className="bg-transparent font-semibold text-neutral-900 outline-none cursor-pointer"
             aria-label="Sort products"
           >
             <option value="relevance">Relevance</option>

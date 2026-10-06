@@ -37,11 +37,11 @@ export function Header() {
       <div className="container mx-auto hidden w-full max-w-7xl items-end justify-between gap-1 px-4 transition-all lg:flex">
 
         {/* Left group: logo */}
-        <div className="flex items-end justify-start gap-28">
-          <a className="h-full flex-1" href="/" aria-label="SharePal Home">
+        <div className="flex items-end justify-start gap-16">
+          <a className="h-full" href="/" aria-label="SharePal Home">
             <div
-              className="flex h-[68px] w-40 flex-col items-center justify-end gap-1 rounded-bl-2xl rounded-br-2xl p-3 pt-[18px] shadow-sm"
-              style={{ backgroundColor: '#5B21B6' }}
+              className="flex h-[76px] w-48 flex-col items-center justify-end gap-1 rounded-b-2xl pb-4 shadow-sm"
+              style={{ backgroundColor: '#4C187C' }}
             >
               <div className="flex items-center justify-center">
                 <SharePalLogo />
@@ -88,12 +88,9 @@ export function Header() {
           <button
             id="select-dates-desktop"
             onClick={() => setIsDatePickerOpen(true)}
-            className="inline-flex h-full items-center justify-center gap-1 rounded-full bg-[#1945E8] px-3 py-[8px] text-sm font-semibold text-white hover:opacity-90 active:opacity-75 transition-opacity"
+            className="inline-flex h-[38px] items-center justify-center gap-1.5 rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white hover:bg-neutral-800 active:opacity-75 transition-opacity"
           >
-            <Calendar className="h-4 w-4" aria-hidden="true" />
-            <span className="pr-1 font-semibold leading-5 tracking-wide">
-              {rentalDates.start ? 'Edit' : 'Select'}
-            </span>
+            <span className="font-semibold leading-5 tracking-wide">Edit</span>
           </button>
         </div>
 
@@ -135,9 +132,9 @@ export function Header() {
         <div className="flex h-full w-full items-center justify-between gap-1">
           {/* Logo pill */}
           <a
-            className="logo flex h-10 flex-col items-center justify-end gap-1 rounded-bl-xl rounded-br-xl px-3 pb-1 pt-3"
+            className="logo flex h-12 w-28 flex-col items-center justify-end pb-2 rounded-b-xl shadow-sm"
             href="/"
-            style={{ backgroundColor: '#5B21B6' }}
+            style={{ backgroundColor: '#4C187C' }}
             aria-label="SharePal Home"
           >
             <div className="flex w-full max-w-28 items-center justify-center">
@@ -189,11 +186,10 @@ export function Header() {
           </div>
           <button
             id="select-dates-mobile"
-            className="inline-flex h-full items-center justify-center gap-1 rounded-full bg-[#1945E8] px-2 py-[6px] pr-3 text-xs font-semibold text-white hover:opacity-90 active:opacity-75 transition-opacity"
-            aria-label="Select rental dates"
+            className="inline-flex h-full items-center justify-center gap-1 rounded-full bg-neutral-900 px-4 py-[6px] text-xs font-semibold text-white hover:bg-neutral-800 active:opacity-75 transition-opacity"
+            aria-label="Edit rental dates"
           >
-            <Calendar className="h-3 w-3" aria-hidden="true" />
-            {rentalDates.start ? 'Edit' : 'Select'}
+            Edit
           </button>
         </div>
       </div>
