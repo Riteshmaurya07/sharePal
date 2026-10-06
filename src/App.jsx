@@ -109,7 +109,7 @@ function App() {
             <div className="mt-5">
               <div className="flex items-end justify-between px-4 sm:px-0 mb-[14px] border-b border-neutral-200 pb-3">
                 <h2 className="text-[22px] font-bold text-neutral-900">Gaming Gadgets On Rent</h2>
-                <span className="text-sm font-semibold text-neutral-500">Total items: 23 items</span>
+                <span className="text-sm font-semibold text-neutral-500">Total items: {products.length} items</span>
               </div>
               
               <div className="px-3 sm:px-0 pb-12">
