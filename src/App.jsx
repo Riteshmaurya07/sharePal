@@ -1,8 +1,16 @@
+import { useMemo } from 'react'
 import { Header } from './components/Header'
 import { HeroBanner } from './components/HeroBanner'
 import { CategoryTabs } from './components/CategoryTabs'
 import { ProductGrid } from './components/ProductGrid'
 import { FloatingDateCTA } from './components/FloatingDateCTA'
+import { DatePickerModal } from './components/DatePickerModal'
+import { FilterSortBar } from './components/FilterSortBar'
+import { FAQ } from './components/FAQ'
+import { Testimonials } from './components/Testimonials'
+import { ImpactStats } from './components/ImpactStats'
+import { Footer } from './components/Footer'
+import { useAppContext } from './context/AppContext'
 import productsData from './data/products.json'
 
 /**
@@ -27,7 +35,51 @@ import productsData from './data/products.json'
  * Data source: src/data/products.json (23 products, no backend)
  */
 function App() {
-  const products = productsData.products
+  const { searchQuery, activeCategory, sortBy, availabilityFilter } = useAppContext()
+
+  const products = useMemo(() => {
+    let filtered = productsData.products
+
+    // Category Filter
+    if (activeCategory !== 'All') {
+      if (activeCategory === 'PS5 Console') {
+        filtered = filtered.filter(p => (p.name.includes('PS5') || p.name.includes('PlayStation')) && !p.name.includes('Wheel'))
+      } else if (activeCategory === 'PS5 Games') {
+        filtered = filtered.filter(p => 
+          p.name.includes('Game') || p.name.includes('FC') || 
+          p.name.includes('God Of War') || p.name.includes('Uncharted') || 
+          p.name.includes('Cricket') || p.name.includes('Ghost of Tsushima') || 
+          p.name.includes('Spider-Man')
+        )
+      } else if (activeCategory === 'Racing Wheel') {
+        filtered = filtered.filter(p => p.name.includes('Wheel'))
+      } else {
+        // Xbox, VR, Big Screen have no data in this subset
+        filtered = []
+      }
+    }
+
+    // Availability Filter
+    if (availabilityFilter === 'available') {
+      filtered = filtered.filter(p => !p.out_of_stock)
+    }
+
+    // Search Filter
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase()
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(lowerQuery))
+    }
+
+    // Sort
+    filtered = [...filtered].sort((a, b) => {
+      if (sortBy === 'price_asc') return a.per_day_rent - b.per_day_rent
+      if (sortBy === 'price_desc') return b.per_day_rent - a.per_day_rent
+      if (sortBy === 'rating_desc') return b.rating - a.rating
+      return 0 // relevance
+    })
+
+    return filtered
+  }, [searchQuery, activeCategory, sortBy, availabilityFilter])
 
   return (
     <div className="min-h-dvh w-full bg-white">
@@ -36,6 +88,9 @@ function App() {
 
       {/* Floating bottom rental-dates CTA */}
       <FloatingDateCTA />
+
+      {/* Date Picker Modal */}
+      <DatePickerModal />
 
       <main className="min-h-screen">
         {/*
@@ -55,11 +110,19 @@ function App() {
           </div>
 
           {/* Product grid — white bg, padded */}
-          <div className="px-3 sm:px-4 lg:px-6">
+          <div className="px-3 sm:px-4 lg:px-6 pb-12">
+            <FilterSortBar />
             <ProductGrid products={products} />
           </div>
         </div>
+
+        {/* Informational Sections */}
+        <ImpactStats />
+        <Testimonials />
+        <FAQ />
       </main>
+
+      <Footer />
     </div>
   )
 }

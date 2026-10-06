@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Calendar } from 'lucide-react'
+import { useAppContext } from '../context/AppContext'
+
+function formatDateShort(dateString) {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+}
 
 /**
  * FloatingDateCTA — fixed bottom pill that appears after scrolling past the header.
@@ -17,6 +24,7 @@ import { Calendar } from 'lucide-react'
  */
 export function FloatingDateCTA() {
   const [visible, setVisible] = useState(false)
+  const { rentalDates, setIsDatePickerOpen } = useAppContext()
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,12 +49,15 @@ export function FloatingDateCTA() {
     >
       <button
         id="floating-date-cta"
+        onClick={() => setIsDatePickerOpen(true)}
         className="relative rounded-full border-2 border-[#9EFF00] bg-[#1945E8] shadow-lg shadow-[#1945E8]/30 transition-transform active:scale-95"
         aria-label="Select rental dates to view prices"
       >
         <div className="delivery-date flex items-center justify-center gap-2 px-[18px] py-[14px] text-sm font-semibold text-white">
           <Calendar className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-          Select rental dates to view prices
+          {rentalDates.start && rentalDates.end 
+            ? `${formatDateShort(rentalDates.start)} - ${formatDateShort(rentalDates.end)}`
+            : 'Select rental dates to view prices'}
         </div>
       </button>
     </div>

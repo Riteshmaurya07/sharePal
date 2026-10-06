@@ -1,5 +1,12 @@
 import { MapPin, ChevronDown, Search, ShoppingCart, Calendar, User } from 'lucide-react'
 import { SharePalLogo } from './SharePalLogo'
+import { useAppContext } from '../context/AppContext'
+
+function formatDateShort(dateString) {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+}
 
 /**
  * Header — sticky top navigation matching SharePal's purple header exactly.
@@ -15,6 +22,10 @@ import { SharePalLogo } from './SharePalLogo'
  * needs top padding of ~96px mobile / ~84px desktop to clear it.
  */
 export function Header() {
+  const { rentalDates, setIsDatePickerOpen } = useAppContext()
+  const displayStart = formatDateShort(rentalDates.start) || 'Delivery Date'
+  const displayEnd = formatDateShort(rentalDates.end) || 'Pickup Date'
+
   return (
     <header
       id="site-header"
@@ -56,29 +67,33 @@ export function Header() {
           {/* Delivery date */}
           <div
             id="delivery-date-desktop"
-            className="flex cursor-pointer items-center justify-center gap-2 bg-white text-neutral-700"
+            className="flex cursor-pointer items-center justify-center gap-2 bg-white text-neutral-700 hover:text-neutral-900 transition-colors"
+            onClick={() => setIsDatePickerOpen(true)}
             aria-label="Edit Dates"
             role="button"
             tabIndex={0}
           >
-            <div className="delivery-date flex items-center justify-center gap-2 text-sm">
+            <div className="delivery-date flex items-center justify-center gap-2 text-sm font-semibold">
               <Calendar className="h-4 w-4" aria-hidden="true" />
-              Delivery Date
+              {displayStart}
             </div>
-            <span className="h-5 w-px bg-neutral-200" />
-            <div className="pickup-date flex items-center justify-center gap-2 text-sm">
+            <span className="h-5 w-px bg-neutral-200 mx-1" />
+            <div className="pickup-date flex items-center justify-center gap-2 text-sm font-semibold">
               <Calendar className="h-4 w-4" aria-hidden="true" />
-              Pickup Date
+              {displayEnd}
             </div>
           </div>
 
           {/* Select CTA */}
           <button
             id="select-dates-desktop"
+            onClick={() => setIsDatePickerOpen(true)}
             className="inline-flex h-full items-center justify-center gap-1 rounded-full bg-[#1945E8] px-3 py-[8px] text-sm font-semibold text-white hover:opacity-90 active:opacity-75 transition-opacity"
           >
             <Calendar className="h-4 w-4" aria-hidden="true" />
-            <span className="pr-1 font-semibold leading-5 tracking-wide">Select</span>
+            <span className="pr-1 font-semibold leading-5 tracking-wide">
+              {rentalDates.start ? 'Edit' : 'Select'}
+            </span>
           </button>
         </div>
 
@@ -158,11 +173,18 @@ export function Header() {
         </div>
 
         {/* Row 2: Date selector bar */}
-        <div className="flex h-[34px] w-full items-center justify-between gap-1 rounded-full border-2 bg-white border-[#8A2BE2]">
+        <div 
+          className="flex h-[34px] w-full cursor-pointer items-center justify-between gap-1 rounded-full border-2 bg-white border-[#8A2BE2]"
+          onClick={() => setIsDatePickerOpen(true)}
+          role="button"
+          tabIndex={0}
+        >
           <div className="flex w-max items-center justify-center gap-2 rounded-full px-2 text-sm">
             <div className="delivery-date flex items-center justify-center gap-1 px-0 text-xs font-semibold">
               <Calendar className="mx-1 w-4 h-4" aria-hidden="true" />
-              <span className="text-xs text-neutral-700">Select Rental Dates</span>
+              <span className="text-xs text-neutral-700">
+                {rentalDates.start ? `${displayStart} - ${displayEnd}` : 'Select Rental Dates'}
+              </span>
             </div>
           </div>
           <button
@@ -171,7 +193,7 @@ export function Header() {
             aria-label="Select rental dates"
           >
             <Calendar className="h-3 w-3" aria-hidden="true" />
-            Select
+            {rentalDates.start ? 'Edit' : 'Select'}
           </button>
         </div>
       </div>

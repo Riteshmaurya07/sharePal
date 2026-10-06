@@ -1,11 +1,15 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useAppContext } from '../context/AppContext'
 
 const CATEGORIES = [
-  { label: 'Photography', href: '#photography' },
-  { label: 'Gaming', href: '#gaming' },
-  { label: 'Outdoor', href: '#outdoor' },
-  { label: 'Entertainment', href: '#entertainment' },
+  { label: 'All', href: '#all' },
+  { label: 'PS5 Console', href: '#ps5-console' },
+  { label: 'PS5 Games', href: '#ps5-games' },
+  { label: 'Racing Wheel', href: '#racing-wheel' },
+  { label: 'Xbox Console', href: '#xbox-console' },
+  { label: 'VR', href: '#vr' },
+  { label: 'Big Screen Gaming', href: '#big-screen' },
 ]
 
 /**
@@ -18,7 +22,7 @@ const CATEGORIES = [
  *     mobile header ≈ 88px, desktop header ≈ 84px
  */
 export function CategoryTabs() {
-  const [activeIdx] = useState(1) // Gaming is always active on this page
+  const { activeCategory, setActiveCategory } = useAppContext()
   const scrollRef = useRef(null)
 
   const scroll = (dir) => {
@@ -51,18 +55,21 @@ export function CategoryTabs() {
           aria-label="Product category tabs"
         >
           {CATEGORIES.map((cat, idx) => {
-            const isActive = idx === activeIdx
+            const isActive = cat.label === activeCategory
             return (
               <div
                 key={cat.label}
-                className="relative flex-shrink-0 basis-[40%] cursor-pointer px-2 py-2 text-center sm:basis-1/2 md:basis-1/3 md:px-4 lg:basis-1/4"
+                className="relative flex-shrink-0 cursor-pointer px-2 py-2 text-center"
                 role="tab"
                 id={`category-tab-${idx}`}
                 aria-selected={isActive}
               >
-                <a
-                  href={cat.href}
-                  className={`relative inline-block w-full max-w-44 px-3 transition-all duration-200
+                <button
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setActiveCategory(cat.label)
+                  }}
+                  className={`relative inline-block w-full whitespace-nowrap px-3 transition-all duration-200
                     ${isActive
                       ? 'text-sm font-bold text-white md:text-neutral-900'
                       : 'text-sm font-medium text-white/70 hover:text-white md:text-neutral-500 md:hover:text-neutral-900'
@@ -76,7 +83,7 @@ export function CategoryTabs() {
                       role="none"
                     />
                   )}
-                </a>
+                </button>
               </div>
             )
           })}

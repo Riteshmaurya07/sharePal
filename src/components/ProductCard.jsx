@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ShoppingCart, ThumbsUp } from 'lucide-react'
 import { ProductBadge, StarRating } from './ProductBadge'
+import { useAppContext } from '../context/AppContext'
 
 /**
  * Formats booked_count for compact display.
@@ -49,6 +50,17 @@ export function ProductCard({ product }) {
 
   const [imgError, setImgError] = useState(false)
   const isVoteToLaunch = tag === 'Vote to Launch'
+  const { rentalDates, setIsDatePickerOpen } = useAppContext()
+
+  const handleAddToCart = () => {
+    if (out_of_stock) return
+    if (!rentalDates.start || !rentalDates.end) {
+      setIsDatePickerOpen(true)
+    } else {
+      // Logic for adding to cart
+      console.log('Added to cart', product.name)
+    }
+  }
 
   return (
     <article
@@ -144,6 +156,7 @@ export function ProductCard({ product }) {
               {/* Add to cart / Notify me */}
               <button
                 id={`cart-btn-${id}`}
+                onClick={handleAddToCart}
                 disabled={out_of_stock}
                 className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold transition-all
                   ${out_of_stock
