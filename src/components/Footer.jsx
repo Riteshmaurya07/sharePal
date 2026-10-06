@@ -25,13 +25,12 @@ export function Footer() {
         <h3 className="mb-4 text-lg font-bold text-neutral-300">Popular Gaming Searches</h3>
         <div className="flex flex-wrap gap-2">
           {SEO_LINKS.map((link, idx) => (
-            <a 
+            <span 
               key={idx} 
-              href="#" 
-              className="rounded-full border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:bg-neutral-700 hover:text-white"
+              className="cursor-default rounded-full border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:bg-neutral-700 hover:text-white"
             >
               {link}
-            </a>
+            </span>
           ))}
         </div>
       </div>
@@ -57,9 +56,9 @@ export function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {links.map((link, i) => (
                   <li key={i}>
-                    <a href="#" className="text-sm text-neutral-400 transition-colors hover:text-[#9EFF00]">
+                    <span className="cursor-default text-sm text-neutral-400 transition-colors hover:text-[#9EFF00]">
                       {link}
-                    </a>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -76,9 +75,9 @@ export function Footer() {
           <div className="mt-4 flex gap-4 sm:mt-0">
             {/* Social Icons Placeholder */}
             {['fb', 'tw', 'ig', 'in'].map((social) => (
-              <a key={social} href="#" className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-800 text-xs text-neutral-400 transition-colors hover:bg-[#1945E8] hover:text-white uppercase font-bold">
+              <span key={social} className="flex h-8 w-8 cursor-default items-center justify-center rounded-full bg-neutral-800 text-xs font-bold uppercase text-neutral-400 transition-colors hover:bg-[#1945E8] hover:text-white">
                 {social.charAt(0)}
-              </a>
+              </span>
             ))}
           </div>
         </div>

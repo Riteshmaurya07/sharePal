@@ -38,7 +38,7 @@ export function Header() {
 
         {/* Left group: logo */}
         <div className="flex items-end justify-start gap-28">
-          <a className="h-full flex-1" href="#" aria-label="SharePal Home">
+          <a className="h-full flex-1" href="/" aria-label="SharePal Home">
             <div
               className="flex h-[68px] w-40 flex-col items-center justify-end gap-1 rounded-bl-2xl rounded-br-2xl p-3 pt-[18px] shadow-sm"
               style={{ backgroundColor: '#5B21B6' }}
@@ -136,7 +136,7 @@ export function Header() {
           {/* Logo pill */}
           <a
             className="logo flex h-10 flex-col items-center justify-end gap-1 rounded-bl-xl rounded-br-xl px-3 pb-1 pt-3"
-            href="#"
+            href="/"
             style={{ backgroundColor: '#5B21B6' }}
             aria-label="SharePal Home"
           >

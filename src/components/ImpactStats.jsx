@@ -4,21 +4,21 @@ export function ImpactStats() {
   const stats = [
     {
       icon: Users,
-      value: '50,000+',
+      value: 'XX,XXX+',
       label: 'Happy Customers',
       color: 'text-[#1945E8]',
       bg: 'bg-blue-50'
     },
     {
       icon: PackageCheck,
-      value: '1M+',
+      value: 'XXX,XXX+',
       label: 'Orders Delivered',
       color: 'text-violet-600',
       bg: 'bg-violet-50'
     },
     {
       icon: Leaf,
-      value: '10,000 kg',
+      value: 'XX,XXX kg',
       label: 'E-Waste Saved',
       color: 'text-[#7ACC00]',
       bg: 'bg-green-50'

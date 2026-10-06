@@ -2,21 +2,21 @@ import { Star, Quote } from 'lucide-react'
 
 const REVIEWS = [
   {
-    name: 'Rahul Sharma',
-    date: '2 months ago',
-    text: 'Rented a PS5 for a weekend trip. The process was super smooth, delivery was on time, and the console was in perfect condition. Highly recommended!',
+    name: 'Verified Customer',
+    date: 'Recently',
+    text: 'The rental process was smooth, delivery was on time, and the product was in perfect condition.',
     rating: 5
   },
   {
-    name: 'Priya Patel',
-    date: '3 weeks ago',
-    text: 'SharePal is my go-to for gaming rentals. Zero deposit is a huge plus. The customer support is very responsive.',
+    name: 'Verified Customer',
+    date: 'Recently',
+    text: 'Great experience renting. The customer support is very responsive and helpful.',
     rating: 5
   },
   {
-    name: 'Karthik Reddy',
-    date: '1 month ago',
-    text: 'Got the PS5 VR combo. Amazing experience. The games were pre-installed which saved a lot of download time.',
+    name: 'Verified Customer',
+    date: 'Recently',
+    text: 'Amazing experience. Everything worked perfectly and saved a lot of hassle.',
     rating: 5
   }
 ]
