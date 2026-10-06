@@ -1,14 +1,15 @@
+import { Gamepad2, Monitor, Joystick, Headset, Car, PlaySquare, MonitorPlay, AlignJustify } from 'lucide-react'
 import { useAppContext } from '../context/AppContext'
 
 const SUB_CATEGORIES = [
-  { label: 'All' },
-  { label: 'GTA VI' },
-  { label: 'PS5 Console' },
-  { label: 'Xbox Console' },
-  { label: 'VR' },
-  { label: 'Racing Wheel' },
-  { label: 'PS5 Games' },
-  { label: 'Big Screen Gaming' },
+  { label: 'All', icon: AlignJustify },
+  { label: 'GTA VI', icon: Gamepad2 },
+  { label: 'PS5 Console', icon: PlaySquare },
+  { label: 'Xbox Console', icon: MonitorPlay },
+  { label: 'VR', icon: Headset },
+  { label: 'Racing Wheel', icon: Car },
+  { label: 'PS5 Games', icon: Joystick },
+  { label: 'Big Screen Gaming', icon: Monitor },
 ]
 
 export function Sidebar() {
@@ -21,17 +22,19 @@ export function Sidebar() {
         <div className="flex px-4 gap-2 w-max">
           {SUB_CATEGORIES.map((cat) => {
             const isActive = cat.label === activeCategory
+            const Icon = cat.icon
             return (
               <button
                 key={cat.label}
                 onClick={() => setActiveCategory(cat.label)}
-                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold transition-colors border ${
+                className={`flex flex-col items-center justify-center min-w-[72px] px-2 py-2 rounded-xl text-xs font-semibold transition-colors border ${
                   isActive
                     ? 'border-[#1945E8] bg-blue-50 text-[#1945E8]'
-                    : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300'
+                    : 'border-neutral-200 bg-white text-neutral-600 hover:border-[#1945E8]'
                 }`}
               >
-                {cat.label}
+                <Icon className="h-5 w-5 mb-1" strokeWidth={2} />
+                <span className="truncate w-full text-center">{cat.label}</span>
               </button>
             )
           })}
@@ -39,22 +42,24 @@ export function Sidebar() {
       </div>
 
       {/* Desktop Vertical Sidebar */}
-      <aside className="hidden md:block w-44 flex-shrink-0">
-        <div className="sticky top-[100px] bg-white rounded-xl shadow-sm border border-neutral-100 p-2 overflow-hidden">
-          <ul className="flex flex-col gap-1">
+      <aside className="hidden md:block w-40 flex-shrink-0">
+        <div className="sticky top-[100px] bg-white rounded-xl shadow-sm border border-neutral-100 p-3 overflow-hidden">
+          <ul className="grid grid-cols-2 gap-2">
             {SUB_CATEGORIES.map((cat) => {
               const isActive = cat.label === activeCategory
+              const Icon = cat.icon
               return (
                 <li key={cat.label}>
                   <button
                     onClick={() => setActiveCategory(cat.label)}
-                    className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all ${
+                    className={`flex h-20 w-full flex-col items-center justify-center rounded-xl p-2 text-center text-xs transition-all border ${
                       isActive
-                        ? 'border-l-4 border-[#1945E8] bg-blue-50 text-[#1945E8] font-bold'
-                        : 'border-l-4 border-transparent text-neutral-600 hover:bg-neutral-50 font-medium'
+                        ? 'border-[#1945E8] bg-blue-50 text-[#1945E8] font-bold'
+                        : 'border-neutral-100 bg-white text-neutral-600 hover:border-[#1945E8] font-medium'
                     }`}
                   >
-                    {cat.label}
+                    <Icon className="mb-1.5 h-6 w-6" strokeWidth={1.5} />
+                    <span className="leading-tight">{cat.label}</span>
                   </button>
                 </li>
               )
