@@ -25,12 +25,14 @@ export function FAQ() {
 
   return (
     <section className="bg-white py-12 sm:py-16">
-      <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="mb-8 text-center text-2xl font-bold text-neutral-900 md:text-3xl">
-          Frequently Asked Questions
-        </h2>
+      <div className="container mx-auto max-w-[1307px] px-4 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+        <div className="md:w-[350px] shrink-0">
+          <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl text-left">
+            Frequently Asked Questions (FAQs)
+          </h2>
+        </div>
         
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 flex-1 w-full">
           {FAQS.map((faq, idx) => {
             const isOpen = openIdx === idx
             return (

@@ -123,9 +123,14 @@ function App() {
         </div>
 
         {/* Informational Sections */}
-        <ImpactStats />
-        <Testimonials />
-        <FAQ />
+        <div className="w-full bg-[#F7F8F9]">
+          <FAQ />
+          <div className="container mx-auto max-w-[1307px] px-4 py-6 text-[13px] text-neutral-500 font-medium">
+            <span className="cursor-pointer hover:text-neutral-800">Home</span> <span className="mx-2 text-neutral-400">&gt;</span> <span className="cursor-pointer hover:text-neutral-800">Bangalore</span> <span className="mx-2 text-neutral-400">&gt;</span> <span className="text-neutral-900 font-semibold cursor-default">Gaming Consoles on rent</span>
+          </div>
+          <Testimonials />
+          <ImpactStats />
+        </div>
       </main>
 
       <Footer />

@@ -1,0 +1,38 @@
+[
+  {
+    "tag": "HEADER",
+    "cls": "fixed top-0 z-50 w-full bg-[#400B68] shadow-[0_2px_10px_rgba(0,0,0,0.1)] h-[88px",
+    "h": "",
+    "text": "Bangalore Delivery Date: 7th Oct Pickup Date: 9th Oct Edit 0"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "",
+    "h": "PS5 + Games (100+) + 1 Controller",
+    "text": "TRENDING PS5 + Games (100+) + 1 Controller 4.6 649 booked Starting from ₹200 /day Add TRENDING PS5 All in one Combo + 2 "
+  },
+  {
+    "tag": "SECTION",
+    "cls": "bg-white py-12 md:py-16 border-t border-neutral-100",
+    "h": "Join the movement",
+    "text": "Join the movement  Together, we're making a huge impact on the environment and your wallet.  250Cr+  SAVED TOGETHER  4.5"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "bg-neutral-50 py-12 md:py-16",
+    "h": "Served more than 1 Lakh Orders",
+    "text": "Served more than 1 Lakh Orders  \"Seamless renting experience. Quality products at great prices.\"  VR Verified Renter  Sh"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "bg-white py-12 sm:py-16",
+    "h": "Frequently Asked Questions",
+    "text": "Frequently Asked Questions Do I need to pay any deposit for renting gaming consoles? No, SharePal offers a Zero Deposit "
+  },
+  {
+    "tag": "FOOTER",
+    "cls": "bg-neutral-900 pt-12 pb-24 text-white md:pb-12",
+    "h": "Popular Gaming Searches",
+    "text": "Popular Gaming Searches PS5 on rent in Bangalore PS4 on rent in Bangalore Xbox on rent in Bangalore Gaming laptops on re"
+  }
+]

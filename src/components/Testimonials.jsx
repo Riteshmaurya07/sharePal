@@ -10,9 +10,9 @@ export function Testimonials() {
   return (
     <section className="bg-neutral-50 py-12 md:py-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="mb-10 text-center flex flex-col md:flex-row items-center justify-between">
-          <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl text-left">
-            Served more than <span className="text-orange-500">1 Lakh Orders</span>
+        <div className="mb-10 text-center flex items-center justify-center">
+          <h2 className="text-2xl font-bold text-neutral-900 md:text-[32px]">
+            Served more than <span className="text-[#FF5A00]">1 Lakh Orders</span>
           </h2>
         </div>
 

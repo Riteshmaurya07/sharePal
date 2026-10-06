@@ -6,25 +6,24 @@ const FOOTER_LINKS = {
   Cities: ['Bangalore', 'Mumbai', 'Delhi', 'Pune', 'Hyderabad']
 }
 
-const SEO_LINKS = [
-  'PS5 on rent in Bangalore',
-  'PS4 on rent in Bangalore',
-  'Xbox on rent in Bangalore',
-  'Gaming laptops on rent',
-  'Nintendo Switch on rent',
-  'VR Headset on rent in Bangalore',
-  'Rent PS5 Games',
-  'Rent PS4 Controllers'
+const ACTION_CAMERAS = [
+  'Action Cameras',
+  'Pocket Cameras',
+  'GoPro Cameras',
+  'DJI Cameras',
+  'DJI Drones',
+  '360 Cameras',
+  'DSLR Cameras'
 ]
 
 export function Footer() {
   return (
     <footer className="bg-neutral-900 pt-12 pb-24 text-white md:pb-12">
-      {/* SEO Links Section */}
+      {/* Category Links Section */}
       <div className="container mx-auto max-w-7xl px-4 border-b border-neutral-800 pb-10">
-        <h3 className="mb-4 text-lg font-bold text-neutral-300">Popular Gaming Searches</h3>
+        <h3 className="mb-4 text-lg font-bold text-neutral-300">Action Cameras</h3>
         <div className="flex flex-wrap gap-2">
-          {SEO_LINKS.map((link, idx) => (
+          {ACTION_CAMERAS.map((link, idx) => (
             <span 
               key={idx} 
               className="cursor-default rounded-full border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:bg-neutral-700 hover:text-white"

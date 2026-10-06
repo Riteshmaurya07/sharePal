@@ -1,0 +1,38 @@
+[
+  {
+    "tag": "HEADER",
+    "cls": "left-0 right-0 flex h-max w-full flex-col items-center justify-center gap-1 over",
+    "h": "",
+    "text": "Bangalore  Delivery Date Pickup Date  Select  Hi, Login"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "relative z-[1] pb-10",
+    "h": "Gaming Gadgets On Rent",
+    "text": "Gaming Gadgets On Rent  Total items: 50 items  Trending PS5 + Games (100+) + 1 Controller Select Dates to view price  ₹N"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "container !my-10 rounded-3xl bg-gray-100 p-4 py-10",
+    "h": "Frequently Asked Questions (FAQs)",
+    "text": "Frequently Asked Questions (FAQs) How can I rent from SharePal? If I rent multiple products, do I need to extend the ren"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "flex flex-col gap-5 bg-gray-100 py-4 lg:gap-12 lg:py-12",
+    "h": "Served more than 1 Lakh Orders",
+    "text": "Served more than 1 Lakh Orders “ I would recommend SharePal for anybody looking to rent trekking gears, on time delivery"
+  },
+  {
+    "tag": "FOOTER",
+    "cls": "bg-primary-900 py-5 pb-16 md:py-[72px] md:pb-10",
+    "h": "Action Cameras",
+    "text": "Action Cameras Action Cameras Pocket Cameras GoPro Cameras DJI Cameras DJI Drones 360 Cameras Cameras DSLR Cameras Camer"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "",
+    "h": "",
+    "text": ""
+  }
+]

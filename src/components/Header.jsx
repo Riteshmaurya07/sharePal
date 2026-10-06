@@ -17,7 +17,7 @@ export function Header() {
   const { rentalDates, setIsDatePickerOpen } = useAppContext()
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-[#400B68] shadow-[0_2px_10px_rgba(0,0,0,0.1)] h-[88px] flex flex-col justify-center">
+    <header className="fixed top-0 z-50 w-full bg-[#4C187C] shadow-[0_2px_10px_rgba(0,0,0,0.1)] h-[84px] flex flex-col justify-center">
       {/* ── DESKTOP HEADER ──────────────────────────────────────────────────────── */}
       <div className="mx-auto hidden w-full max-w-[1307px] items-center justify-between px-0 lg:flex h-full">
         {/* Left group: logo + location */}
@@ -33,56 +33,62 @@ export function Header() {
             </div>
           </a>
 
-          {/* Location selector */}
-          <button
-            className="flex items-center gap-1.5 text-[15px] font-semibold text-white hover:text-white/90 transition-colors"
-            aria-label="Select city"
-          >
-            <MapPin className="h-4 w-4 text-white/80" />
-            Bangalore
-          </button>
-        </div>
+        {/* Center Date/Location Pill */}
+        <div className="flex flex-1 justify-center max-w-[800px] px-8">
+          <div className="flex items-center rounded-full bg-white p-1 pl-4 shadow-sm h-[48px] w-full max-w-[700px] justify-between">
+            <div className="flex items-center gap-4 text-[13px] font-medium text-neutral-600 flex-1">
+              
+              {/* Location */}
+              <div className="flex items-center gap-2 cursor-pointer hover:text-neutral-900 transition-colors">
+                <MapPin className="h-4 w-4 text-neutral-400" />
+                <span className="min-w-[70px]">Bangalore</span>
+              </div>
+              <div className="h-5 w-[1px] bg-neutral-200"></div>
 
-        {/* Center/Right controls */}
-        <div className="flex items-center gap-8">
-          {/* Date Selector */}
-          <div className="flex items-center rounded-full border border-neutral-200 bg-white p-1 pl-4 shadow-sm h-[44px]">
-            <div className="flex items-center gap-4 text-[13px] font-medium text-neutral-600">
+              {/* Delivery Date */}
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-neutral-400" />
-                <span className="min-w-[140px]">
+                <span className="min-w-[130px]">
                   {rentalDates.start ? `Delivery Date: ${formatDateLabel(rentalDates.start)}` : 'Select Delivery'}
                 </span>
               </div>
-              <div className="h-4 w-[1px] bg-neutral-200"></div>
+              <div className="h-5 w-[1px] bg-neutral-200"></div>
+
+              {/* Pickup Date */}
               <div className="flex items-center gap-2">
-                <span className="min-w-[140px]">
+                <Calendar className="h-4 w-4 text-neutral-400" />
+                <span className="min-w-[130px]">
                   {rentalDates.end ? `Pickup Date: ${formatDateLabel(rentalDates.end)}` : 'Select Pickup'}
                 </span>
               </div>
             </div>
+
             <button
               id="select-dates-desktop"
               onClick={() => setIsDatePickerOpen(true)}
-              className="ml-4 h-[36px] px-5 rounded-full bg-[#111827] text-sm font-semibold text-white hover:bg-neutral-800 transition-colors"
+              className="ml-2 h-[38px] px-6 rounded-full bg-[#111827] text-sm font-semibold text-white hover:bg-neutral-800 transition-colors"
             >
-              Edit
+              Select
             </button>
           </div>
+        </div>
 
           {/* Icons: Search, Cart, Account */}
-          <div className="flex items-center gap-6 text-white">
+          <div className="flex items-center gap-5 text-white">
             <button aria-label="Search" className="hover:text-white/80 transition-colors">
-              <Search className="h-5 w-5" strokeWidth={2} />
+              <Search className="h-5 w-5" strokeWidth={2.5} />
             </button>
             <button aria-label="Cart" className="relative hover:text-white/80 transition-colors">
-              <ShoppingCart className="h-5 w-5" strokeWidth={2} />
-              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
+              <ShoppingCart className="h-5 w-5" strokeWidth={2.5} />
+              <span className="absolute -top-1.5 -right-1.5 flex h-[15px] w-[15px] items-center justify-center rounded-full bg-[#1945E8] text-[9px] font-bold text-white border border-white">
                 0
               </span>
             </button>
-            <button aria-label="Account" className="hover:text-white/80 transition-colors">
-              <User className="h-5 w-5" strokeWidth={2} />
+            <button aria-label="Account" className="flex items-center gap-2 ml-1 hover:text-white/80 transition-colors">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-[#400B68]">
+                <User className="h-5 w-5" strokeWidth={2.5} />
+              </div>
+              <span className="text-sm font-bold tracking-wide">Hi, Login</span>
             </button>
           </div>
         </div>
