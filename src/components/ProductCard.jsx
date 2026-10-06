@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ShoppingCart, ThumbsUp } from 'lucide-react'
 import { ProductBadge, StarRating } from './ProductBadge'
 import { useAppContext } from '../context/AppContext'
@@ -49,16 +49,23 @@ export function ProductCard({ product }) {
   } = product
 
   const [imgError, setImgError] = useState(false)
+  const [isAdded, setIsAdded] = useState(false)
   const isVoteToLaunch = tag === 'Vote to Launch'
   const { rentalDates, setIsDatePickerOpen } = useAppContext()
+
+  useEffect(() => {
+    if (isAdded) {
+      const timer = setTimeout(() => setIsAdded(false), 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [isAdded])
 
   const handleAddToCart = () => {
     if (out_of_stock) return
     if (!rentalDates.start || !rentalDates.end) {
       setIsDatePickerOpen(true)
     } else {
-      // Logic for adding to cart
-      console.log('Added to cart', product.name)
+      setIsAdded(true)
     }
   }
 
@@ -157,11 +164,13 @@ export function ProductCard({ product }) {
               <button
                 id={`cart-btn-${id}`}
                 onClick={handleAddToCart}
-                disabled={out_of_stock}
+                disabled={out_of_stock || isAdded}
                 className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold transition-all
                   ${out_of_stock
                     ? 'cursor-not-allowed bg-neutral-100 text-neutral-400 ring-1 ring-neutral-200'
-                    : 'bg-[#1945E8] text-white hover:bg-[#1538cc] active:scale-95 active:opacity-90'
+                    : isAdded
+                      ? 'bg-green-600 text-white'
+                      : 'bg-[#1945E8] text-white hover:bg-[#1538cc] active:scale-95 active:opacity-90'
                   }`}
                 aria-label={
                   out_of_stock
@@ -169,8 +178,19 @@ export function ProductCard({ product }) {
                     : `Add ${name} to cart`
                 }
               >
-                <ShoppingCart className="h-3.5 w-3.5" aria-hidden="true" />
-                {out_of_stock ? 'Notify Me' : 'Add'}
+                {isAdded ? (
+                  <>
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Added!
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="h-3.5 w-3.5" aria-hidden="true" />
+                    {out_of_stock ? 'Notify Me' : 'Add'}
+                  </>
+                )}
               </button>
             </>
           )}

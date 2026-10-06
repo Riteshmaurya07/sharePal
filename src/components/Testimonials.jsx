@@ -1,23 +1,17 @@
-import { Star, Quote } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
 
-const REVIEWS = [
+const FEATURES = [
   {
-    name: 'Verified Customer',
-    date: 'Recently',
-    text: 'The rental process was smooth, delivery was on time, and the product was in perfect condition.',
-    rating: 5
+    title: 'Hassle-Free Experience',
+    text: 'Skip the heavy upfront costs. Rent the latest consoles and games instantly without breaking the bank.'
   },
   {
-    name: 'Verified Customer',
-    date: 'Recently',
-    text: 'Great experience renting. The customer support is very responsive and helpful.',
-    rating: 5
+    title: 'Huge Game Library',
+    text: 'Access a massive collection of top-tier titles, pre-loaded digital accounts, or physical discs.'
   },
   {
-    name: 'Verified Customer',
-    date: 'Recently',
-    text: 'Amazing experience. Everything worked perfectly and saved a lot of hassle.',
-    rating: 5
+    title: 'Flexible Durations',
+    text: 'Rent for a weekend party, a two-week vacation, or a whole month. You decide the duration.'
   }
 ]
 
@@ -26,32 +20,22 @@ export function Testimonials() {
     <section className="bg-neutral-50 py-12 sm:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">Trusted by thousands</h2>
-          <p className="mt-2 text-sm text-neutral-600 md:text-base">See what our customers have to say about us.</p>
+          <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">What Our Renters Value</h2>
+          <p className="mt-2 text-sm text-neutral-600 md:text-base">
+            The core benefits that make renting the smartest choice for gamers.
+          </p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {REVIEWS.map((review, idx) => (
+          {FEATURES.map((feature, idx) => (
             <div key={idx} className="relative rounded-2xl bg-white p-6 shadow-sm border border-neutral-100">
-              <Quote className="absolute right-4 top-4 h-8 w-8 text-neutral-100" />
-              
-              <div className="flex gap-1 mb-3">
-                {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                ))}
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-violet-100 text-violet-600">
+                <CheckCircle2 className="h-6 w-6" />
               </div>
-              
-              <p className="mb-4 text-sm leading-relaxed text-neutral-700 italic">"{review.text}"</p>
-              
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1945E8] text-white font-bold">
-                  {review.name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-neutral-900">{review.name}</h4>
-                  <p className="text-xs text-neutral-500">{review.date}</p>
-                </div>
-              </div>
+              <h4 className="mb-2 text-lg font-bold text-neutral-900">{feature.title}</h4>
+              <p className="text-sm leading-relaxed text-neutral-600">
+                {feature.text}
+              </p>
             </div>
           ))}
         </div>
