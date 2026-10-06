@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* SharePal Brand Colors — taken directly from live site CSS */
+  --color-primary-500: #5B21B6;
+  --color-primary-900: #1945E8;
+  --color-secondary-500: #9EFF00;
+  --color-secondary-600: #7ACC00;
+  --color-category-purple: #8A2BE2;
+  --color-header-bg: #4C187C;
+
+  /* Neutral Palette */
+  --color-neutral-150: #F1F5F9;
+  --color-neutral-250: #D1D5DB;
+
+  /* Font families */
+  --font-ubuntu: 'Ubuntu', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    @apply antialiased bg-white text-neutral-900;
+  }
+
+  /* Focus ring consistent with SharePal blue */
+  :focus-visible {
+    outline: 2px solid #1945E8;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Scrollbar utility — hide track, keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Safe-area top padding for notched devices */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+}
